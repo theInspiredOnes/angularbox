@@ -9,10 +9,9 @@ module.exports = (grunt) ->
 		tmpDir: '.tmp'
 		pkg: grunt.file.readJSON 'package.json'
 		src:
-			coffee: [ '<%= srcDir %>/assets/coffee/**/*.coffee' ]
-			less: '<%= srcDir %>/assets/css/<%= pkg.name %>.less'
+			coffee: [ '<%= srcDir %>/scripts/coffee/**/*.coffee' ]
+			less: '<%= srcDir %>/styles/<%= pkg.name %>.less'
 			#jade: 'jade/*.jade'
-			js: '<%= srcDir %>/assets/js/**/*.js'
 		clean:
 			tmp: [ '.tmp' ]
 
@@ -41,7 +40,6 @@ module.exports = (grunt) ->
 				src: [
 					'module.prefix'
 					'.tmp/js/**/*.js'
-					#'<%= src.js %>'
 					'module.suffix'
 				]
 				dest: '<%= tmpDir %>/js/<%= pkg.name %>.js'
