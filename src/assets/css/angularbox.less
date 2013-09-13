@@ -1,0 +1,224 @@
+@fast: 100ms;
+@slow: 250ms;
+@trans-black: rgba(0, 0, 0, 0.9);
+
+.transition(@type: all, @time: 100ms, @method: linear) {
+	-webkit-transition: @type @time @method;
+	-moz-transition: @type @time @method;
+	-ms-transition: @type @time @method;
+	-o-transition: @type @time @method;
+	transition: @type @time @method;
+}
+
+.animation(@name, @duration, @count, @direction) {
+	-webkit-animation-name: @name;
+	   -moz-animation-name: @name;
+	     -o-animation-name: @name;
+	        animation-name: @name;
+	-webkit-animation-duration: @duration;
+	   -moz-animation-duration: @duration;
+	     -o-animation-duration: @duration;
+	        animation-duration: @duration;
+	-webkit-animation-iteration-count: @count;
+	   -moz-animation-iteration-count: @count;
+	     -o-animation-iteration-count: @count;
+	        animation-iteration-count: @count;
+	-webkit-animation-direction: @direction;
+	   -moz-animation-direction: @direction;
+	     -o-animation-direction: @direction;
+	        animation-direction: @direction;
+}
+
+.animation-delay(@delay) {
+	-webkit-animation-delay: @delay;
+	   -moz-animation-delay: @delay;
+	     -o-animation-delay: @delay;
+	        animation-delay: @delay;
+}
+
+.angularbox-style {
+	font-family: sans-serif;
+	position: relative;
+	z-index: 1100;
+	.transition(opacity, @slow, linear);
+	position: fixed;
+	cursor: pointer;
+	background-color: @trans-black;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 5%;
+	     box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+	&.hidden {
+		opacity: 0;
+		width: 0px;
+		height: 0px;
+		left: -9999px;
+		top: -9999px;
+	}
+
+	&.fadeout {
+		opacity: 0;
+	}
+
+	figure {
+		position: relative;
+		margin: 0 auto;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+		text-align: center;
+		letter-spacing: -0.33em;
+
+		&:before {
+		  content: '';
+		  display: inline-block;
+		  height: 100%;
+		  vertical-align: middle;
+		}
+
+		img {
+			display: inline-block;
+			margin: auto;
+			max-width: 100%;
+			max-height: 100%;
+			cursor: default;
+			vertical-align: middle;
+			opacity: 0;
+			position: relative;
+			z-index: 1101;
+			box-shadow: 0 0 5px black;
+
+			&.loaded {
+				opacity: 1;
+				.transition(opacity, @fast, linear);
+			}
+		}
+
+		figcaption {
+			margin-top: -3.5em;
+			letter-spacing: normal;
+
+			span {
+				display: inline-block;
+				cursor: default;
+				font-size: 100%;
+			}
+		}
+	}
+
+	figcaption span, button {
+		border-radius: 0.25em;
+		color: white;
+		background-color: @trans-black;
+		display: inline-block;
+	}
+
+	figcaption span {
+		position: relative;
+		z-index: 1102;
+		padding: 0.75em 1em;
+	}
+
+	button {
+		position: relative;
+		z-index: 1102;
+		.transition(all, @fast, linear);
+		padding: .4em 0em .6em 0;
+		border: none;
+		opacity: .8;
+		cursor: pointer;
+		position: fixed;
+		font-size: 100%;
+		font-weight: bold;
+		line-height: 1em;
+		text-align: center;
+		width: 2em;
+		height: 2em;
+		background: none;
+
+		&:hover {
+			opacity: 1;
+		}
+
+
+		&.prev, &.next {
+			top: 50%;
+			background: fadeout(@trans-black, 50%);
+			margin-top: -1em;
+			border-radius: 50%;
+			font-size: 2em;
+			opacity: 1;
+			border: 1px solid fadeout(white, 75%);
+
+			&:hover {
+				background: fadeout(@trans-black, 35%);
+				border: 1px solid fadeout(white, 60%);
+			}
+		}
+
+		&.close {
+			top: 1em;
+			background: none;
+		}
+
+		&.prev {
+			left: 1em;
+		}
+
+		&.next, &.close {
+			right: 1em;
+		}
+	}
+
+	.spinner {
+		@dim: 25px;
+		position: fixed;
+		height: @dim;
+		width: @dim*4;
+		top: 50%;
+		left: 50%;
+		margin-top: -@dim/2;
+		margin-left: -@dim*2;
+		text-align: center;
+
+		span {
+			display: inline-block;
+			height: @dim;
+			width: @dim;
+			background-color: white;
+			border-radius: 50%;
+			.animation(angularbox-loader, 1s, infinite, linear);
+
+			&:first-child {
+				.animation-delay(-250ms);
+				margin-right: @dim/4;
+			}
+
+			&:last-child {
+				.animation-delay(250ms);
+				margin-left: @dim/4;
+			}
+		}
+
+	}	
+}
+
+@-moz-keyframes angularbox-loader{
+	50%{opacity: 0;}
+
+}
+@-webkit-keyframes angularbox-loader{
+	50%{opacity: 0;}
+
+}
+@-o-keyframes angularbox-loader{
+	50%{opacity: 0;}
+
+}
+@keyframes angularbox-loader{
+	50%{opacity: 0;}
+}

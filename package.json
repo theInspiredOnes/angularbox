@@ -1,0 +1,22 @@
+{
+  "name": "angularbox",
+  "version": "0.1.0",
+  "description": "A lightbox module for AngularJS.",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "matchdep": "~0.1.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-less": "~0.5.1",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jade": "*",
+    "grunt-recess": "~0.3.3",
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-ngmin": "~0.0.2"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
