@@ -20,7 +20,7 @@ Links to images that should open in a lightbox are referenced like this:
 Different galleries can be created by adding a `rel="mygalleryname"` to the `<a>` tag.
 
 ## Controls
-To scroll through the images of the same gallery you can use the `‹` and `›` buttons or the left and right arow keys respectively. To close the lighbox press the `×` button, the escape key or click anywhere on the lighbox background.
+To scroll through the images of the same gallery you can use the `‹` and `›` buttons or the left and right arrow keys respectively. To close the lightbox press the `×` button, the escape key or click anywhere on the lightbox background.
 
 ##Known Issues
 - Zooming behaviour on mobile devices.
@@ -28,4 +28,4 @@ To scroll through the images of the same gallery you can use the `‹` and `›`
 
 ##Contribute
 
-You need to have grunt and bower installed in order to build the code. Grunt is preconfigured with CoffeeScript and LESS compiling. Just run `grunt` or `grunt watch` in the root directory of this repository.
+You need to have grunt and bower installed in order to build the code. Grunt is preconfigured with CoffeeScript and LESS compiling. Just run `npm install` and then `grunt` or `grunt watch` in the root directory of this repository.

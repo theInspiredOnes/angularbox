@@ -1,7 +1,6 @@
 angularbox = angular.module 'angularbox', []
 
 angularbox.service 'registerServ', ->
-	serv = {}
 	noRel = '$$none'
 	register = {}
 
@@ -11,7 +10,7 @@ angularbox.service 'registerServ', ->
 	getRegister = (rel) ->
 		register[if typeof rel is 'undefined' then noRel else rel]
 
-	serv.add = (rel, src, title) ->
+	@add = (rel, src, title) ->
 		if typeof src is 'undefined' then return undefined
 		slide = new Slide rel, src, title
 		if register.hasOwnProperty slide.rel
@@ -20,22 +19,21 @@ angularbox.service 'registerServ', ->
 			register[slide.rel] = [slide]
 		slide.id = register[slide.rel].length - 1
 
-	serv.get = (rel, id) ->
+	@get = (rel, id) ->
 		if typeof id is 'undefined' then return null
 		reg = getRegister rel
 		unless 0 <= id < reg.length then return null
 		reg[id]
 
-	serv.next = (rel, id) ->
+	@next = (rel, id) ->
 		reg = getRegister rel
 		@get rel, (id + 1) % reg.length
 
-	serv.prev = (rel, id) ->
+	@prev = (rel, id) ->
 		reg = getRegister rel
 		id = reg.length - 1 if --id < 0
 		@get(rel, id)
-
-	serv
+	return
 
 angularbox.directive 'angularbox', ->
 	restrict: 'A'
@@ -118,7 +116,6 @@ angularbox.directive 'angularbox', ->
 			$scope.catch = ($event) ->
 				$event.stopPropagation()
 				return
-
 			return
 
 angularbox.directive 'angularbox',

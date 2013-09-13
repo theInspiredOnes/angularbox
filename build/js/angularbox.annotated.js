@@ -1,8 +1,7 @@
 var angularbox;
 angularbox = angular.module('angularbox', []);
 angularbox.service('registerServ', function () {
-  var Slide, getRegister, noRel, register, serv;
-  serv = {};
+  var Slide, getRegister, noRel, register;
   noRel = '$$none';
   register = {};
   Slide = function () {
@@ -16,7 +15,7 @@ angularbox.service('registerServ', function () {
   getRegister = function (rel) {
     return register[typeof rel === 'undefined' ? noRel : rel];
   };
-  serv.add = function (rel, src, title) {
+  this.add = function (rel, src, title) {
     var slide;
     if (typeof src === 'undefined') {
       return void 0;
@@ -29,7 +28,7 @@ angularbox.service('registerServ', function () {
     }
     return slide.id = register[slide.rel].length - 1;
   };
-  serv.get = function (rel, id) {
+  this.get = function (rel, id) {
     var reg;
     if (typeof id === 'undefined') {
       return null;
@@ -40,12 +39,12 @@ angularbox.service('registerServ', function () {
     }
     return reg[id];
   };
-  serv.next = function (rel, id) {
+  this.next = function (rel, id) {
     var reg;
     reg = getRegister(rel);
     return this.get(rel, (id + 1) % reg.length);
   };
-  serv.prev = function (rel, id) {
+  this.prev = function (rel, id) {
     var reg;
     reg = getRegister(rel);
     if (--id < 0) {
@@ -53,7 +52,6 @@ angularbox.service('registerServ', function () {
     }
     return this.get(rel, id);
   };
-  return serv;
 });
 angularbox.directive('angularbox', function () {
   return {
