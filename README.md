@@ -11,7 +11,7 @@ Just include Angular and the `angularbox.min.js` in your page and add this at th
 
 Links to images that should open in a lightbox are referenced like this: 
 
-```
+```html
 <a href="http://lorempixel.com/1000/500/people/1" class="angularbox" title="Title goes here">
   <img src="http://lorempixel.com/200/100/people/1" alt="Foo">
 </a>

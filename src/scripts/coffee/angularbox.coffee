@@ -1,6 +1,6 @@
-angularbox = angular.module 'angularbox', []
+angular.module 'angularbox', []
 
-angularbox.service 'registerServ', ->
+angular.module('angularbox').service 'registerServ', ->
 	noRel = '$$none'
 	register = {}
 
@@ -35,7 +35,7 @@ angularbox.service 'registerServ', ->
 		@get(rel, id)
 	return
 
-angularbox.directive 'angularbox', ->
+angular.module('angularbox').directive 'angularbox', ->
 	restrict: 'A'
 	replace: true
 	template:
@@ -118,7 +118,7 @@ angularbox.directive 'angularbox', ->
 				return
 			return
 
-angularbox.directive 'angularbox',
+angular.module('angularbox').directive 'angularbox',
 	($rootScope, registerServ) ->
 		restrict: 'C'
 		link: ($scope, $elm, $attrs) ->

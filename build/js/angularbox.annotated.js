@@ -1,6 +1,5 @@
-var angularbox;
-angularbox = angular.module('angularbox', []);
-angularbox.service('registerServ', function () {
+angular.module('angularbox', []);
+angular.module('angularbox').service('registerServ', function () {
   var Slide, getRegister, noRel, register;
   noRel = '$$none';
   register = {};
@@ -53,7 +52,7 @@ angularbox.service('registerServ', function () {
     return this.get(rel, id);
   };
 });
-angularbox.directive('angularbox', function () {
+angular.module('angularbox').directive('angularbox', function () {
   return {
     restrict: 'A',
     replace: true,
@@ -130,7 +129,7 @@ angularbox.directive('angularbox', function () {
     ]
   };
 });
-angularbox.directive('angularbox', [
+angular.module('angularbox').directive('angularbox', [
   '$rootScope',
   'registerServ',
   function ($rootScope, registerServ) {
