@@ -9,6 +9,8 @@ Just include Angular and the `angularbox.min.js` in your page and add this at th
 
 `<div data-angularbox="angularbox"></div>`
 
+Make sure to add `'angularbox'` to your Angular-app's dependencies or use it as standalone-app by adding the `ng-app="angularbox"` attribute to an element surrounding the image thumbnails.
+
 Links to images that should open in a lightbox are referenced like this: 
 
 ```html

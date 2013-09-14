@@ -42,7 +42,7 @@ angular.module('angularbox').directive 'angularbox', ->
 		'''
 		<div class="angularbox-style hidden" data-ng-click="close($event)" data-ng-class="{hidden: isHidden, fadeout: isFading}">
 			<figure>
-				<img data-ng-src={{src}} data-ng-class="{loaded: !isLoading}" data-ng-click="catch($event)" />
+				<img src={{src}} data-ng-class="{loaded: !isLoading}" data-ng-click="catch($event)" />
 				<figcaption data-ng-show="caption"><span data-ng-click="catch($event)">{{caption}}</span></figcaption>
 			</figure>
 			<div class="spinner" data-ng-show="isLoading"><span></span><span></span><span></span>
@@ -58,12 +58,13 @@ angular.module('angularbox').directive 'angularbox', ->
 			transition = 250
 			img = angular.element $element.children()[0].childNodes[1]
 			$scope.isHidden = yes
-			$scope.isLoading = $scope.isFading = no
+			$scope.isLoading = no
+			$scope.isFading = no
 
-			img.bind 'load', ->
-				$scope.isLoading = no
-				$scope.$apply()
-				return
+			# img.bind 'load', ->
+			# 	$scope.isLoading = no
+			# 	$scope.$apply()
+			# 	return
 
 			key = ($event) ->
 				if $scope.isHidden or $scope.isFading then return
@@ -85,7 +86,7 @@ angular.module('angularbox').directive 'angularbox', ->
 			$scope.$on 'angularboxOpen', open
 
 			show = ->
-				$scope.isLoading = yes
+				# $scope.isLoading = yes
 				$scope.src = current.src
 				$scope.caption = current.title
 				return
@@ -93,6 +94,7 @@ angular.module('angularbox').directive 'angularbox', ->
 			hide = ->
 				$scope.isFading = no
 				$scope.isHidden = yes
+				$scope.src = $scope.caption = ''
 				return
 
 			$scope.close = ($event) ->

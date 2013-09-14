@@ -56,7 +56,7 @@ angular.module('angularbox').directive('angularbox', function () {
   return {
     restrict: 'A',
     replace: true,
-    template: '<div class="angularbox-style hidden" data-ng-click="close($event)" data-ng-class="{hidden: isHidden, fadeout: isFading}">\n\t<figure>\n\t\t<img data-ng-src={{src}} data-ng-class="{loaded: !isLoading}" data-ng-click="catch($event)" />\n\t\t<figcaption data-ng-show="caption"><span data-ng-click="catch($event)">{{caption}}</span></figcaption>\n\t</figure>\n\t<div class="spinner" data-ng-show="isLoading"><span></span><span></span><span></span>\n\t</div>\n\t<button class="prev" title="previous" data-ng-click="prev($event)">&lsaquo;</button>\n\t<button class="next" title="next" data-ng-click="next($event)">&rsaquo;</button>\n\t<button class="close" title="close">&times;</button>\n</div>',
+    template: '<div class="angularbox-style hidden" data-ng-click="close($event)" data-ng-class="{hidden: isHidden, fadeout: isFading}">\n\t<figure>\n\t\t<img src={{src}} data-ng-class="{loaded: !isLoading}" data-ng-click="catch($event)" />\n\t\t<figcaption data-ng-show="caption"><span data-ng-click="catch($event)">{{caption}}</span></figcaption>\n\t</figure>\n\t<div class="spinner" data-ng-show="isLoading"><span></span><span></span><span></span>\n\t</div>\n\t<button class="prev" title="previous" data-ng-click="prev($event)">&lsaquo;</button>\n\t<button class="next" title="next" data-ng-click="next($event)">&rsaquo;</button>\n\t<button class="close" title="close">&times;</button>\n</div>',
     controller: [
       '$scope',
       '$element',
@@ -70,11 +70,8 @@ angular.module('angularbox').directive('angularbox', function () {
         transition = 250;
         img = angular.element($element.children()[0].childNodes[1]);
         $scope.isHidden = true;
-        $scope.isLoading = $scope.isFading = false;
-        img.bind('load', function () {
-          $scope.isLoading = false;
-          $scope.$apply();
-        });
+        $scope.isLoading = false;
+        $scope.isFading = false;
         key = function ($event) {
           if ($scope.isHidden || $scope.isFading) {
             return;
@@ -99,13 +96,13 @@ angular.module('angularbox').directive('angularbox', function () {
         };
         $scope.$on('angularboxOpen', open);
         show = function () {
-          $scope.isLoading = true;
           $scope.src = current.src;
           $scope.caption = current.title;
         };
         hide = function () {
           $scope.isFading = false;
           $scope.isHidden = true;
+          $scope.src = $scope.caption = '';
         };
         $scope.close = function ($event) {
           $event.stopPropagation();
